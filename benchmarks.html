@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Benchmarks — XUrbanAI</title>
+  <meta name="description" content="Registry of urban AI benchmarks on XUrbanAI: open tasks with data splits, metrics, baselines, submission rules, and geographic generalization protocols.">
+  <link rel="canonical" href="https://xurbanai.com/benchmarks.html">
+  <meta name="theme-color" content="#071b1d">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="XUrbanAI">
+  <meta property="og:title" content="Benchmarks — XUrbanAI">
+  <meta property="og:description" content="Registry of urban AI benchmarks with data splits, metrics, baselines, submission rules, and geographic generalization protocols.">
+  <meta property="og:url" content="https://xurbanai.com/benchmarks.html">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071b1d'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='900' font-size='38' fill='%2367e8cf'%3EX%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <div class="nav">
+      <a class="brand" href="index.html"><span>X</span>UrbanAI</a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+      <nav id="site-nav" aria-label="Primary">
+        <a href="models.html">Models</a>
+        <a href="agents.html">Agents</a>
+        <a href="benchmarks.html" aria-current="page">Benchmarks</a>
+        <a href="standards.html">Standards</a>
+        <a class="cta" href="https://github.com/Hamsterradcc/xurbanai.com">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-hero">
+      <div>
+        <div class="eyebrow">Registry 03 / Benchmarks</div>
+        <h1>Grounded evaluation.</h1>
+        <p class="lead">Open tasks that test generalization, fairness, uncertainty, and practical usefulness. A benchmark enters this registry with its data, metrics, baselines, and submission rules published.</p>
+      </div>
+      <aside class="note">
+        <strong>Entry standard</strong>
+        <p>Six common fields plus the benchmark-specific fields below. Evaluation code is released with the task; leaderboards open only after external submissions exist.</p>
+        <span class="status"><i></i>Open registry</span>
+      </aside>
+    </div>
+
+    <section id="entries">
+      <div class="eyebrow">Entries</div>
+      <h2>Released benchmarks.</h2>
+      <div data-registry="benchmarks">
+        <div class="empty">
+          <div>
+            <strong>No public entries yet.</strong>
+            <p>Benchmarks are listed here once a release meets the standard. Follow the repository for releases, or propose a task through an issue.</p>
+          </div>
+          <div class="actions">
+            <a class="button" href="https://github.com/Hamsterradcc/xurbanai.com/issues/new?title=Benchmark%20entry%3A%20&labels=benchmarks">Propose a task</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="card">
+      <div class="eyebrow">Benchmark card</div>
+      <h2>What a benchmark entry documents.</h2>
+      <p class="intro">In addition to the six common fields, every benchmark entry answers the following.</p>
+      <dl class="fields">
+        <div><dt>Research question</dt><dd>The urban capability the task measures, and why that capability matters for a decision.</dd></div>
+        <div><dt>Task definition</dt><dd>Inputs, expected outputs, and the exact instructions or prompts given to a system under test.</dd></div>
+        <div><dt>Data</dt><dd>Source, geography, time span, licence, splits, and how test data is protected from leakage.</dd></div>
+        <div><dt>Metrics &amp; criteria</dt><dd>Scoring rules, what counts as success, and how uncertainty or disagreement is reported.</dd></div>
+        <div><dt>Baselines</dt><dd>Reference systems, including simple and human baselines where they exist, with their scores.</dd></div>
+        <div><dt>Submission rules</dt><dd>How results are submitted, what must be disclosed, and how evaluation code is run.</dd></div>
+        <div><dt>Generalization protocol</dt><dd>How performance is tested across cities, periods, or populations beyond the development data.</dd></div>
+        <div><dt>Versioning &amp; errata</dt><dd>Version history, corrections to data or scoring, and how earlier results are handled.</dd></div>
+      </dl>
+      <div class="actions"><a class="button" href="standards.html#benchmarks">Benchmark standard in full</a></div>
+    </section>
+
+    <section id="related">
+      <div class="eyebrow">Related registries</div>
+      <h2>Benchmarks score models and agents.</h2>
+      <div class="grid two">
+        <a class="card" href="models.html"><span class="icon">01 / MODELS</span><span class="more" aria-hidden="true">→</span><h3>Urban representations</h3><p>Models evaluated against tasks in this registry.</p></a>
+        <a class="card" href="agents.html"><span class="icon">02 / AGENTS</span><span class="more" aria-hidden="true">→</span><h3>Research agents</h3><p>Workflows whose usefulness is measured by these tasks.</p></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 XUrbanAI · A project by <a href="https://yuxuancai.com">Yuxuan Cai</a></span>
+    <div class="links">
+      <a href="https://urbanscience.ai">Urban Science AI Lab</a>
+      <a href="https://urbanprobe.com">UrbanProbe</a>
+      <a href="https://citycomputingcollective.com">City Computing Collective</a>
+      <a href="https://github.com/Hamsterradcc/xurbanai.com">GitHub</a>
+    </div>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>

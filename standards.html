@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Entry Standard — XUrbanAI</title>
+  <meta name="description" content="The XUrbanAI entry standard: the fields every model, agent, and benchmark must document, the release checklist, status and versioning rules, and what is not accepted.">
+  <link rel="canonical" href="https://xurbanai.com/standards.html">
+  <meta name="theme-color" content="#071b1d">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="XUrbanAI">
+  <meta property="og:title" content="Entry Standard — XUrbanAI">
+  <meta property="og:description" content="The fields every model, agent, and benchmark must document, the release checklist, and what is not accepted.">
+  <meta property="og:url" content="https://xurbanai.com/standards.html">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071b1d'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='900' font-size='38' fill='%2367e8cf'%3EX%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <div class="nav">
+      <a class="brand" href="index.html"><span>X</span>UrbanAI</a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+      <nav id="site-nav" aria-label="Primary">
+        <a href="models.html">Models</a>
+        <a href="agents.html">Agents</a>
+        <a href="benchmarks.html">Benchmarks</a>
+        <a href="standards.html" aria-current="page">Standards</a>
+        <a class="cta" href="https://github.com/Hamsterradcc/xurbanai.com">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-hero">
+      <div>
+        <div class="eyebrow">Entry standard · v1</div>
+        <h1>What it takes to enter a registry.</h1>
+        <p class="lead">One standard, three registries. The common fields apply to everything; each registry adds the fields its kind of work needs. Missing fields block a release.</p>
+      </div>
+      <aside class="note">
+        <strong>How the standard is used</strong>
+        <p>Entry cards are stored as JSON in the repository and rendered on the registry pages. Changes to the standard are versioned and recorded in the repository history.</p>
+      </aside>
+    </div>
+
+    <section id="common">
+      <div class="eyebrow">Common fields</div>
+      <h2>Required for every entry.</h2>
+      <dl class="fields">
+        <div><dt>Urban question</dt><dd>The city problem the work addresses, and who is meant to use the result.</dd></div>
+        <div><dt>Data provenance</dt><dd>Sources, geography, time span, licence, and processing steps for every dataset used.</dd></div>
+        <div><dt>Evaluation</dt><dd>Tasks, metrics, baselines, and protocol, with results reported as released.</dd></div>
+        <div><dt>Failure modes</dt><dd>Known limitations, observed errors, and conditions under which the result should not be trusted.</dd></div>
+        <div><dt>Geographic validity</dt><dd>Cities tested, and whether claims are local or supported by cross-city evidence.</dd></div>
+        <div><dt>Artifacts &amp; citation</dt><dd>Code, configurations, weights or task files, a version, a licence, and how to cite the entry.</dd></div>
+      </dl>
+    </section>
+
+    <section id="models">
+      <div class="eyebrow">Registry 01</div>
+      <h2>Model fields.</h2>
+      <div class="rules">
+        <div class="rule"><strong>Intended task</strong><span>The prediction, representation, or generation task, and the urban decision it is meant to inform.</span></div>
+        <div class="rule"><strong>Inputs &amp; modalities</strong><span>Imagery, maps, mobility traces, text, tabular records, or sensor streams, with resolution and preprocessing.</span></div>
+        <div class="rule"><strong>Training data</strong><span>Sources, geography, time span, licence, sampling, and any data excluded and why.</span></div>
+        <div class="rule"><strong>Evaluation</strong><span>Held-out tasks, metrics, baselines, and uncertainty, with evaluation code released.</span></div>
+        <div class="rule"><strong>Failure modes</strong><span>Observed errors, subgroup gaps, distribution shifts, and conditions under which outputs should not be used.</span></div>
+        <div class="rule"><strong>Usage constraints</strong><span>Intended users, prohibited uses, and requirements for human review.</span></div>
+        <div class="rule"><strong>Artifacts</strong><span>Code, configuration, weights or access route, version, licence, and citation.</span></div>
+      </div>
+    </section>
+
+    <section id="agents">
+      <div class="eyebrow">Registry 02</div>
+      <h2>Agent fields.</h2>
+      <div class="rules">
+        <div class="rule"><strong>Task &amp; workflow</strong><span>The research or planning task, the steps performed, and where the workflow starts and stops.</span></div>
+        <div class="rule"><strong>Tools &amp; data access</strong><span>Models, datasets, APIs, and documents the agent can call or read, with their licences.</span></div>
+        <div class="rule"><strong>Decision boundaries</strong><span>What the agent may decide alone, what requires a human, and how outputs are reviewed.</span></div>
+        <div class="rule"><strong>Evaluation protocol</strong><span>Success criteria, reliability across runs, comparison with human performance, and reproducibility.</span></div>
+        <div class="rule"><strong>Failure modes</strong><span>Observed errors, fabrication risks, bias in retrieved evidence, and misuse scenarios.</span></div>
+        <div class="rule"><strong>Traceability</strong><span>Logs, intermediate outputs, and citations produced so that results can be audited.</span></div>
+        <div class="rule"><strong>Artifacts</strong><span>Code, prompts or policies, configuration, version, licence, and citation.</span></div>
+      </div>
+    </section>
+
+    <section id="benchmarks">
+      <div class="eyebrow">Registry 03</div>
+      <h2>Benchmark fields.</h2>
+      <div class="rules">
+        <div class="rule"><strong>Research question</strong><span>The urban capability the task measures, and why it matters for a decision.</span></div>
+        <div class="rule"><strong>Task definition</strong><span>Inputs, expected outputs, and the exact instructions or prompts given to a system under test.</span></div>
+        <div class="rule"><strong>Data</strong><span>Source, geography, time span, licence, splits, and how test data is protected from leakage.</span></div>
+        <div class="rule"><strong>Metrics &amp; criteria</strong><span>Scoring rules, what counts as success, and how uncertainty or disagreement is reported.</span></div>
+        <div class="rule"><strong>Baselines</strong><span>Reference systems, including simple and human baselines where they exist, with scores.</span></div>
+        <div class="rule"><strong>Submission rules</strong><span>How results are submitted, what must be disclosed, and how evaluation code is run.</span></div>
+        <div class="rule"><strong>Generalization protocol</strong><span>How performance is tested across cities, periods, or populations beyond the development data.</span></div>
+        <div class="rule"><strong>Versioning &amp; errata</strong><span>Version history, corrections to data or scoring, and how earlier results are handled.</span></div>
+      </div>
+    </section>
+
+    <section id="release">
+      <div class="eyebrow">Release checklist</div>
+      <h2>Before an entry goes live.</h2>
+      <div class="steps">
+        <div class="step"><strong>Card complete</strong><span>Every required field is filled. “To follow” is not an accepted value.</span></div>
+        <div class="step"><strong>Evaluation reproducible</strong><span>Evaluation code runs from the released artifacts and reproduces the reported numbers.</span></div>
+        <div class="step"><strong>Licences checked</strong><span>Data and code licences permit the release, and restricted data is described rather than redistributed.</span></div>
+        <div class="step"><strong>Version assigned</strong><span>The entry carries a version, a release date, and a citation; later changes get a new version.</span></div>
+      </div>
+    </section>
+
+    <section id="status">
+      <div class="eyebrow">Status &amp; versioning</div>
+      <h2>How entries change over time.</h2>
+      <div class="rules">
+        <div class="rule"><strong>draft</strong><span>Card in preparation. Stored in the repository but not shown on the registry pages.</span></div>
+        <div class="rule"><strong>released</strong><span>Card complete and artifacts public. Shown on the registry page with its version.</span></div>
+        <div class="rule"><strong>deprecated</strong><span>Superseded or withdrawn. Remains listed for the record, with a pointer to its replacement where one exists.</span></div>
+        <div class="rule"><strong>Versions</strong><span>Semantic versions. A change to data, scoring, weights, or task definition increments the version; results are always reported against a version.</span></div>
+      </div>
+    </section>
+
+    <section id="not-accepted">
+      <div class="eyebrow">Out of scope</div>
+      <h2>What is not accepted.</h2>
+      <div class="rules">
+        <div class="rule"><strong>Demos without evaluation</strong><span>Interfaces or outputs with no stated task, metric, or baseline.</span></div>
+        <div class="rule"><strong>Unverifiable claims</strong><span>Results on data that cannot be described well enough for an independent check.</span></div>
+        <div class="rule"><strong>Undocumented transfer</strong><span>Claims of generality without evidence beyond the development city.</span></div>
+        <div class="rule"><strong>Restricted material</strong><span>Data, weights, or documents the submitter does not have the right to release.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="callout">
+        <div>
+          <div class="eyebrow">Propose an entry</div>
+          <h2>Open an issue with the card attached.</h2>
+          <p class="intro">Proposals are reviewed against this standard in the public repository. Corrections to existing entries follow the same route.</p>
+        </div>
+        <a class="button solid" href="https://github.com/Hamsterradcc/xurbanai.com/issues/new/choose">Open an issue</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 XUrbanAI · A project by <a href="https://yuxuancai.com">Yuxuan Cai</a></span>
+    <div class="links">
+      <a href="https://urbanscience.ai">Urban Science AI Lab</a>
+      <a href="https://urbanprobe.com">UrbanProbe</a>
+      <a href="https://citycomputingcollective.com">City Computing Collective</a>
+      <a href="https://github.com/Hamsterradcc/xurbanai.com">GitHub</a>
+    </div>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>
