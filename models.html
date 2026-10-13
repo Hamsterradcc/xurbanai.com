@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Models — XUrbanAI</title>
+  <meta name="description" content="Registry of urban AI models on XUrbanAI: multimodal and spatial models documented with their task, training data, evaluation, failure modes, and geographic validity.">
+  <link rel="canonical" href="https://xurbanai.com/models.html">
+  <meta name="theme-color" content="#071b1d">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="XUrbanAI">
+  <meta property="og:title" content="Models — XUrbanAI">
+  <meta property="og:description" content="Registry of urban AI models documented with task, training data, evaluation, failure modes, and geographic validity.">
+  <meta property="og:url" content="https://xurbanai.com/models.html">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071b1d'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='900' font-size='38' fill='%2367e8cf'%3EX%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <div class="nav">
+      <a class="brand" href="index.html"><span>X</span>UrbanAI</a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+      <nav id="site-nav" aria-label="Primary">
+        <a href="models.html" aria-current="page">Models</a>
+        <a href="agents.html">Agents</a>
+        <a href="benchmarks.html">Benchmarks</a>
+        <a href="standards.html">Standards</a>
+        <a class="cta" href="https://github.com/Hamsterradcc/xurbanai.com">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-hero">
+      <div>
+        <div class="eyebrow">Registry 01 / Models</div>
+        <h1>Urban representations.</h1>
+        <p class="lead">Multimodal and spatial models for imagery, maps, mobility, text, and city-scale signals. A model enters this registry with its training data, evaluation, and failure modes stated.</p>
+      </div>
+      <aside class="note">
+        <strong>Entry standard</strong>
+        <p>Six common fields plus the model-specific fields below. A model card is required; weights are released where licensing allows.</p>
+        <span class="status"><i></i>Open registry</span>
+      </aside>
+    </div>
+
+    <section id="entries">
+      <div class="eyebrow">Entries</div>
+      <h2>Released models.</h2>
+      <div data-registry="models">
+        <div class="empty">
+          <div>
+            <strong>No public entries yet.</strong>
+            <p>Models are listed here once a release meets the standard. Follow the repository for releases, or propose an entry through an issue.</p>
+          </div>
+          <div class="actions">
+            <a class="button" href="https://github.com/Hamsterradcc/xurbanai.com/issues/new?title=Model%20entry%3A%20&labels=models">Propose an entry</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="card">
+      <div class="eyebrow">Model card</div>
+      <h2>What a model entry documents.</h2>
+      <p class="intro">In addition to the six common fields, every model entry answers the following.</p>
+      <dl class="fields">
+        <div><dt>Intended task</dt><dd>The prediction, representation, or generation task, and the urban decision it is meant to inform.</dd></div>
+        <div><dt>Inputs &amp; modalities</dt><dd>Imagery, maps, mobility traces, text, tabular records, or sensor streams, with resolution and preprocessing.</dd></div>
+        <div><dt>Training data</dt><dd>Sources, geography, time span, licence, sampling, and any data that was excluded and why.</dd></div>
+        <div><dt>Evaluation</dt><dd>Held-out tasks, metrics, baselines, and uncertainty estimates, with the evaluation code released.</dd></div>
+        <div><dt>Failure modes</dt><dd>Observed errors, subgroup gaps, distribution shifts, and conditions under which outputs should not be used.</dd></div>
+        <div><dt>Geographic validity</dt><dd>Cities trained and tested on, and evidence for or against transfer to other places.</dd></div>
+        <div><dt>Usage constraints</dt><dd>Intended users, prohibited uses, and requirements for human review.</dd></div>
+        <div><dt>Artifacts</dt><dd>Code, configuration, weights or access route, version, licence, and citation.</dd></div>
+      </dl>
+      <div class="actions"><a class="button" href="standards.html#models">Model standard in full</a></div>
+    </section>
+
+    <section id="related">
+      <div class="eyebrow">Related registries</div>
+      <h2>Models are tested by benchmarks and used by agents.</h2>
+      <div class="grid two">
+        <a class="card" href="benchmarks.html"><span class="icon">03 / BENCHMARKS</span><span class="more" aria-hidden="true">→</span><h3>Grounded evaluation</h3><p>Open tasks that models in this registry are evaluated against.</p></a>
+        <a class="card" href="agents.html"><span class="icon">02 / AGENTS</span><span class="more" aria-hidden="true">→</span><h3>Research agents</h3><p>Workflows that compose models into analysis and planning tasks.</p></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 XUrbanAI · A project by <a href="https://yuxuancai.com">Yuxuan Cai</a></span>
+    <div class="links">
+      <a href="https://urbanscience.ai">Urban Science AI Lab</a>
+      <a href="https://urbanprobe.com">UrbanProbe</a>
+      <a href="https://citycomputingcollective.com">City Computing Collective</a>
+      <a href="https://github.com/Hamsterradcc/xurbanai.com">GitHub</a>
+    </div>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>
