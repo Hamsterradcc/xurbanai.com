@@ -1,0 +1,99 @@
+{
+  "$schema": "../schema.json",
+  "$comment": "Example entries. Not shown in the registries; used to preview entry.html (?src=example) and to test scripts/validate.py. Each card field explains what belongs in it.",
+  "models": [
+    {
+      "id": "example-model",
+      "title": "Example model entry",
+      "summary": "A placeholder that shows how a released model is laid out, with every field of the model card filled.",
+      "status": "released",
+      "version": "1.0.0",
+      "released": "2026-01-15",
+      "authors": ["Author One", "Author Two"],
+      "tags": ["example", "street-level imagery", "perception"],
+      "license": "MIT (code), CC BY 4.0 (weights)",
+      "links": [
+        { "label": "Code", "href": "https://github.com/Hamsterradcc/xurbanai.com" },
+        { "label": "Entry standard", "href": "standards.html#models" }
+      ],
+      "citation": "Author One and Author Two (2026). Example model entry, version 1.0.0. XUrbanAI. https://xurbanai.com/entry.html?registry=models&id=example-model",
+      "card": {
+        "urban_question": "State the city problem in one or two sentences, and name the people who will use the output. A model without a stated user does not enter the registry.",
+        "intended_task": "Name the task precisely, for example a rating, a classification, or an embedding, and the decision it is meant to inform.",
+        "inputs_modalities": "List each input with its resolution and preprocessing, for example street-level images at 640 by 640 pixels, cropped and colour-normalised.",
+        "data_provenance": "Give every training source with its geography, period, licence, and sampling. Say what was excluded and why.",
+        "evaluation": "Report held-out results against at least one baseline, with uncertainty. Link the evaluation code so the numbers can be reproduced.\n\nResults are reported exactly as released; later re-runs get a new version.",
+        "failure_modes": "Describe observed errors, gaps between subgroups or neighbourhoods, and the conditions under which outputs should not be used.",
+        "geographic_validity": "Name the cities used for training and testing, and state whether any claim of transfer to other places is supported by evidence.",
+        "usage_constraints": "Name the intended users, prohibited uses, and where human review is required before outputs inform a decision."
+      }
+    }
+  ],
+  "agents": [
+    {
+      "id": "example-agent",
+      "title": "Example agent entry",
+      "summary": "A placeholder that shows how a released agent is laid out, including its decision boundaries and audit trail.",
+      "status": "released",
+      "version": "0.3.0",
+      "released": "2026-02-01",
+      "updated": "2026-03-10",
+      "authors": ["Author One"],
+      "tags": ["example", "evidence synthesis"],
+      "license": "Apache-2.0",
+      "links": [{ "label": "Code", "href": "https://github.com/Hamsterradcc/xurbanai.com" }],
+      "citation": "Author One (2026). Example agent entry, version 0.3.0. XUrbanAI.",
+      "card": {
+        "urban_question": "State the planning or research task the agent supports, and who runs it.",
+        "task_workflow": "Describe the steps in order, where the workflow starts, and where it hands back to a person.",
+        "data_provenance": "List the models, datasets, APIs, and documents the agent can call or read, with their licences.",
+        "decision_boundaries": "Say what the agent may decide alone and what always requires a human, and how outputs are reviewed.",
+        "evaluation": "Define success, report reliability across repeated runs, and compare with people doing the same task.",
+        "failure_modes": "Describe fabrication risks, bias in retrieved evidence, and misuse scenarios that were tested.",
+        "traceability": "Describe the logs, intermediate outputs, and citations the agent produces so that a result can be audited.",
+        "geographic_validity": "Name the places where the workflow was tested and whether results hold elsewhere.",
+        "usage_constraints": "Name settings where the agent must not be used, and any cost or rate limits."
+      }
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "example-benchmark",
+      "title": "Example benchmark entry",
+      "summary": "A placeholder that shows how a released benchmark is laid out, from task definition to submission rules.",
+      "status": "released",
+      "version": "1.1.0",
+      "released": "2026-03-01",
+      "authors": ["Author One", "Author Two", "Author Three"],
+      "tags": ["example", "survey replication"],
+      "license": "CC BY 4.0 (task files), MIT (evaluation code)",
+      "links": [
+        { "label": "Task files", "href": "https://github.com/Hamsterradcc/xurbanai.com" },
+        { "label": "Superseded version", "href": "entry.html?registry=benchmarks&id=example-benchmark-v1&src=example" }
+      ],
+      "citation": "Author One, Author Two and Author Three (2026). Example benchmark entry, version 1.1.0. XUrbanAI.",
+      "card": {
+        "urban_question": "Name the capability the task measures and why it matters for an urban decision.",
+        "task_definition": "Give the inputs, expected outputs, and the exact instructions or prompts a system under test receives.",
+        "data_provenance": "Give the source, geography, period, licence, and splits, and explain how test data is kept from leaking into training.",
+        "metrics": "Define the scoring rule, what counts as success, and how uncertainty or disagreement is reported.",
+        "baselines": "List reference systems with their scores, including a simple baseline and a human baseline where one exists.",
+        "evaluation": "Explain how the task itself was checked, for example annotation agreement and leakage tests.",
+        "failure_modes": "Describe how the benchmark could be gamed or misread, and what it does not measure.",
+        "geographic_validity": "Describe how performance is tested beyond the development data: other cities, periods, or populations.",
+        "submission_rules": "Explain how results are submitted, what must be disclosed, and how the evaluation code is run.",
+        "versioning_errata": "Record each version and correction. Version 1.1.0 corrected two mislabelled items in the test split; earlier results are reported against 1.0.0."
+      }
+    },
+    {
+      "id": "example-benchmark-v1",
+      "title": "Example benchmark entry (first version)",
+      "summary": "A placeholder for a deprecated entry, kept for the record and pointing to its replacement.",
+      "status": "deprecated",
+      "version": "1.0.0",
+      "released": "2026-01-20",
+      "replaced_by": "example-benchmark",
+      "tags": ["example"]
+    }
+  ]
+}

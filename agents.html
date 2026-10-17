@@ -12,7 +12,11 @@
   <meta property="og:title" content="Agents — XUrbanAI">
   <meta property="og:description" content="Registry of urban research agents documented with their tools, oversight, evaluation, and failure modes.">
   <meta property="og:url" content="https://xurbanai.com/agents.html">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://xurbanai.com/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="XUrbanAI: Build. Test. Question. Registries of urban AI models, agents, and benchmarks.">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071b1d'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='900' font-size='38' fill='%2367e8cf'%3EX%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -56,7 +60,7 @@
             <p>Agents are listed here once a release meets the standard. Follow the repository for releases, or propose an entry through an issue.</p>
           </div>
           <div class="actions">
-            <a class="button" href="https://github.com/Hamsterradcc/xurbanai.com/issues/new?title=Agent%20entry%3A%20&labels=agents">Propose an entry</a>
+            <a class="button" href="https://github.com/Hamsterradcc/xurbanai.com/issues/new?template=agent-entry.yml">Propose an entry</a>
           </div>
         </div>
       </div>
@@ -65,17 +69,21 @@
     <section id="card">
       <div class="eyebrow">Agent card</div>
       <h2>What an agent entry documents.</h2>
-      <p class="intro">In addition to the six common fields, every agent entry answers the following.</p>
+      <p class="intro">Every agent entry answers the following. The name in code is the key used in the registry data and in the proposal form.</p>
+      <!-- build:card agents -->
       <dl class="fields">
-        <div><dt>Task &amp; workflow</dt><dd>The research or planning task, the steps the agent performs, and where the workflow starts and stops.</dd></div>
-        <div><dt>Tools &amp; data access</dt><dd>Models, datasets, APIs, and documents the agent can call or read, with their licences.</dd></div>
-        <div><dt>Decision boundaries</dt><dd>What the agent may decide alone, what requires a human, and how its outputs are reviewed.</dd></div>
-        <div><dt>Evaluation protocol</dt><dd>Success criteria, reliability across runs, comparison with human performance, and reproducibility.</dd></div>
-        <div><dt>Failure modes</dt><dd>Observed errors, fabrication risks, bias in retrieved evidence, and misuse scenarios.</dd></div>
-        <div><dt>Traceability</dt><dd>Logs, intermediate outputs, and citations the agent produces so that results can be audited.</dd></div>
-        <div><dt>Usage constraints</dt><dd>Intended users, settings where the agent must not be used, and cost or rate considerations.</dd></div>
-        <div><dt>Artifacts</dt><dd>Code, prompts or policies, configuration, version, licence, and citation.</dd></div>
+        <div><dt>Urban question <code class="key">urban_question</code></dt><dd>The city problem the work addresses, and who is meant to use the result.</dd></div>
+        <div><dt>Task &amp; workflow <code class="key">task_workflow</code></dt><dd>The research or planning task, the steps the agent performs, and where the workflow starts and stops.</dd></div>
+        <div><dt>Tools &amp; data access <code class="key">data_provenance</code></dt><dd>Models, datasets, APIs, and documents the agent can call or read, with their licences.</dd></div>
+        <div><dt>Decision boundaries <code class="key">decision_boundaries</code></dt><dd>What the agent may decide alone, what requires a human, and how its outputs are reviewed.</dd></div>
+        <div><dt>Evaluation protocol <code class="key">evaluation</code></dt><dd>Success criteria, reliability across runs, comparison with human performance, and reproducibility.</dd></div>
+        <div><dt>Failure modes <code class="key">failure_modes</code></dt><dd>Observed errors, fabrication risks, bias in retrieved evidence, and misuse scenarios.</dd></div>
+        <div><dt>Traceability <code class="key">traceability</code></dt><dd>Logs, intermediate outputs, and citations the agent produces so that results can be audited.</dd></div>
+        <div><dt>Geographic validity <code class="key">geographic_validity</code></dt><dd>Cities tested, and whether claims are local or supported by cross-city evidence.</dd></div>
+        <div><dt>Usage constraints <code class="key">usage_constraints</code></dt><dd>Intended users, settings where the agent must not be used, and cost or rate considerations.</dd></div>
+        <div><dt>Artifacts &amp; citation <code class="key">version</code> <code class="key">license</code> <code class="key">links</code> <code class="key">citation</code></dt><dd>Code, prompts or policies, configuration, version, licence, and citation.</dd></div>
       </dl>
+      <!-- /build:card agents -->
       <div class="actions"><a class="button" href="standards.html#agents">Agent standard in full</a></div>
     </section>
 
@@ -90,12 +98,16 @@
   </main>
 
   <footer>
-    <span>© 2026 XUrbanAI · A project by <a href="https://yuxuancai.com">Yuxuan Cai</a></span>
-    <div class="links">
-      <a href="https://urbanscience.ai">Urban Science AI Lab</a>
-      <a href="https://urbanprobe.com">UrbanProbe</a>
-      <a href="https://citycomputingcollective.com">City Computing Collective</a>
-      <a href="https://github.com/Hamsterradcc/xurbanai.com">GitHub</a>
+    <p class="network-title" id="network-title">Open urban research network</p>
+    <ul class="network" aria-labelledby="network-title">
+        <li><a href="https://urbanscience.ai"><strong>Urban Science AI Lab</strong><span>Research agenda</span></a></li>
+        <li><a href="https://urbanprobe.com"><strong>UrbanProbe</strong><span>Data, indicators &amp; methods</span></a></li>
+        <li><div class="here"><strong>XUrbanAI</strong><span>Models, agents &amp; benchmarks</span><small>This site</small></div></li>
+        <li><a href="https://citycomputingcollective.com"><strong>City Computing Collective</strong><span>Community &amp; collaboration</span></a></li>
+    </ul>
+    <div class="footer-base">
+      <span>&copy; 2026 XUrbanAI &middot; A project by <a href="https://yuxuancai.com">Yuxuan Cai</a></span>
+      <div class="links"><a href="standards.html">Entry standard</a><a href="https://github.com/Hamsterradcc/xurbanai.com">Repository</a></div>
     </div>
   </footer>
   <script src="assets/site.js"></script>

@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xurbanai.com/data/schema.json",
+  "title": "XUrbanAI registry",
+  "description": "Single source of truth for XUrbanAI entries. scripts/build.py generates the field lists on the site and the issue forms from this file; scripts/validate.py checks data/registry.json against it.",
+  "x-site": {
+    "name": "XUrbanAI",
+    "url": "https://xurbanai.com",
+    "repo": "https://github.com/Hamsterradcc/xurbanai.com",
+    "standard": "standards.html",
+    "pages_with_common": ["index.html", "standards.html"],
+    "artifacts": {
+      "title": "Artifacts & citation",
+      "description": "Code, configurations, weights or task files, a version, a licence, and how to cite the entry.",
+      "keys": ["version", "license", "links", "citation"]
+    }
+  },
+  "x-common": ["urban_question", "data_provenance", "evaluation", "failure_modes", "geographic_validity"],
+  "x-registries": [
+    {
+      "key": "models", "number": "01", "label": "Models", "singular": "model",
+      "card": "modelCard", "page": "models.html", "template": "model-entry.yml",
+      "artifacts": "Code, configuration, weights or access route, version, licence, and citation."
+    },
+    {
+      "key": "agents", "number": "02", "label": "Agents", "singular": "agent",
+      "card": "agentCard", "page": "agents.html", "template": "agent-entry.yml",
+      "artifacts": "Code, prompts or policies, configuration, version, licence, and citation."
+    },
+    {
+      "key": "benchmarks", "number": "03", "label": "Benchmarks", "singular": "benchmark",
+      "card": "benchmarkCard", "page": "benchmarks.html", "template": "benchmark-entry.yml",
+      "artifacts": "Task files, evaluation code, version, licence, and citation."
+    }
+  ],
+  "type": "object",
+  "required": ["models", "agents", "benchmarks"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "$comment": { "type": "string" },
+    "models": { "type": "array", "items": { "$ref": "#/$defs/modelEntry" } },
+    "agents": { "type": "array", "items": { "$ref": "#/$defs/agentEntry" } },
+    "benchmarks": { "type": "array", "items": { "$ref": "#/$defs/benchmarkEntry" } }
+  },
+  "$defs": {
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "format": "date" },
+    "text": { "type": "string", "minLength": 1 },
+
+    "entry": {
+      "type": "object",
+      "required": ["id", "title", "summary", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug", "description": "Stable identifier, used in the entry URL." },
+        "title": { "type": "string", "minLength": 3, "maxLength": 120 },
+        "summary": { "type": "string", "minLength": 10, "maxLength": 280, "description": "One sentence shown in the registry list." },
+        "status": { "enum": ["draft", "released", "deprecated"] },
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "released": { "$ref": "#/$defs/date" },
+        "updated": { "$ref": "#/$defs/date" },
+        "authors": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/text" } },
+        "tags": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/text" } },
+        "license": { "$ref": "#/$defs/text" },
+        "links": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "required": ["label", "href"], "additionalProperties": false,
+            "properties": { "label": { "$ref": "#/$defs/text" }, "href": { "type": "string", "pattern": "^(https?://|[A-Za-z0-9._/-])" } }
+          }
+        },
+        "citation": { "type": "string", "minLength": 10 },
+        "url": { "type": "string", "description": "Optional external card. When absent the entry is rendered by entry.html." },
+        "replaced_by": { "$ref": "#/$defs/slug" }
+      },
+      "allOf": [
+        { "if": { "properties": { "status": { "const": "released" } } }, "then": { "required": ["version", "released", "authors", "license", "links", "citation", "card"] } },
+        { "if": { "properties": { "status": { "const": "deprecated" } } }, "then": { "required": ["version", "released"] } }
+      ]
+    },
+    "modelEntry": { "$ref": "#/$defs/entry", "properties": { "card": { "$ref": "#/$defs/modelCard" } }, "unevaluatedProperties": false },
+    "agentEntry": { "$ref": "#/$defs/entry", "properties": { "card": { "$ref": "#/$defs/agentCard" } }, "unevaluatedProperties": false },
+    "benchmarkEntry": { "$ref": "#/$defs/entry", "properties": { "card": { "$ref": "#/$defs/benchmarkCard" } }, "unevaluatedProperties": false },
+
+    "urban_question": { "$ref": "#/$defs/text", "title": "Urban question", "description": "The city problem the work addresses, and who is meant to use the result." },
+    "data_provenance": { "$ref": "#/$defs/text", "title": "Data provenance", "description": "Sources, geography, time span, licence, and processing steps for every dataset used." },
+    "evaluation": { "$ref": "#/$defs/text", "title": "Evaluation", "description": "Tasks, metrics, baselines, and protocol, with results reported as released." },
+    "failure_modes": { "$ref": "#/$defs/text", "title": "Failure modes", "description": "Known limitations, observed errors, and conditions under which the result should not be trusted." },
+    "geographic_validity": { "$ref": "#/$defs/text", "title": "Geographic validity", "description": "Cities tested, and whether claims are local or supported by cross-city evidence." },
+    "usage_constraints": { "$ref": "#/$defs/text", "title": "Usage constraints", "description": "Intended users, prohibited uses, and requirements for human review." },
+
+    "modelCard": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "urban_question": { "$ref": "#/$defs/urban_question" },
+        "intended_task": { "$ref": "#/$defs/text", "title": "Intended task", "description": "The prediction, representation, or generation task, and the urban decision it is meant to inform." },
+        "inputs_modalities": { "$ref": "#/$defs/text", "title": "Inputs & modalities", "description": "Imagery, maps, mobility traces, text, tabular records, or sensor streams, with resolution and preprocessing." },
+        "data_provenance": { "$ref": "#/$defs/data_provenance", "title": "Training data", "description": "Sources, geography, time span, licence, sampling, and any data that was excluded and why." },
+        "evaluation": { "$ref": "#/$defs/evaluation", "description": "Held-out tasks, metrics, baselines, and uncertainty estimates, with the evaluation code released." },
+        "failure_modes": { "$ref": "#/$defs/failure_modes", "description": "Observed errors, subgroup gaps, distribution shifts, and conditions under which outputs should not be used." },
+        "geographic_validity": { "$ref": "#/$defs/geographic_validity", "description": "Cities trained and tested on, and evidence for or against transfer to other places." },
+        "usage_constraints": { "$ref": "#/$defs/usage_constraints" }
+      }
+    },
+    "agentCard": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "urban_question": { "$ref": "#/$defs/urban_question" },
+        "task_workflow": { "$ref": "#/$defs/text", "title": "Task & workflow", "description": "The research or planning task, the steps the agent performs, and where the workflow starts and stops." },
+        "data_provenance": { "$ref": "#/$defs/data_provenance", "title": "Tools & data access", "description": "Models, datasets, APIs, and documents the agent can call or read, with their licences." },
+        "decision_boundaries": { "$ref": "#/$defs/text", "title": "Decision boundaries", "description": "What the agent may decide alone, what requires a human, and how its outputs are reviewed." },
+        "evaluation": { "$ref": "#/$defs/evaluation", "title": "Evaluation protocol", "description": "Success criteria, reliability across runs, comparison with human performance, and reproducibility." },
+        "failure_modes": { "$ref": "#/$defs/failure_modes", "description": "Observed errors, fabrication risks, bias in retrieved evidence, and misuse scenarios." },
+        "traceability": { "$ref": "#/$defs/text", "title": "Traceability", "description": "Logs, intermediate outputs, and citations the agent produces so that results can be audited." },
+        "geographic_validity": { "$ref": "#/$defs/geographic_validity" },
+        "usage_constraints": { "$ref": "#/$defs/usage_constraints", "description": "Intended users, settings where the agent must not be used, and cost or rate considerations." }
+      }
+    },
+    "benchmarkCard": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "urban_question": { "$ref": "#/$defs/urban_question", "title": "Research question", "description": "The urban capability the task measures, and why that capability matters for a decision." },
+        "task_definition": { "$ref": "#/$defs/text", "title": "Task definition", "description": "Inputs, expected outputs, and the exact instructions or prompts given to a system under test." },
+        "data_provenance": { "$ref": "#/$defs/data_provenance", "title": "Data", "description": "Source, geography, time span, licence, splits, and how test data is protected from leakage." },
+        "metrics": { "$ref": "#/$defs/text", "title": "Metrics & criteria", "description": "Scoring rules, what counts as success, and how uncertainty or disagreement is reported." },
+        "baselines": { "$ref": "#/$defs/text", "title": "Baselines", "description": "Reference systems, including simple and human baselines where they exist, with their scores." },
+        "evaluation": { "$ref": "#/$defs/evaluation", "title": "Task validation", "description": "How the task itself was checked: annotation agreement, leakage tests, and whether scores track the capability it claims to measure." },
+        "failure_modes": { "$ref": "#/$defs/failure_modes", "title": "Known limitations", "description": "Ways the benchmark can be gamed or misread, and capabilities it does not measure." },
+        "geographic_validity": { "$ref": "#/$defs/geographic_validity", "title": "Generalization protocol", "description": "How performance is tested across cities, periods, or populations beyond the development data." },
+        "submission_rules": { "$ref": "#/$defs/text", "title": "Submission rules", "description": "How results are submitted, what must be disclosed, and how evaluation code is run." },
+        "versioning_errata": { "$ref": "#/$defs/text", "title": "Versioning & errata", "description": "Version history, corrections to data or scoring, and how earlier results are handled." }
+      }
+    }
+  }
+}

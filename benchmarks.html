@@ -12,7 +12,11 @@
   <meta property="og:title" content="Benchmarks — XUrbanAI">
   <meta property="og:description" content="Registry of urban AI benchmarks with data splits, metrics, baselines, submission rules, and geographic generalization protocols.">
   <meta property="og:url" content="https://xurbanai.com/benchmarks.html">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://xurbanai.com/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="XUrbanAI: Build. Test. Question. Registries of urban AI models, agents, and benchmarks.">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071b1d'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='900' font-size='38' fill='%2367e8cf'%3EX%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -56,7 +60,7 @@
             <p>Benchmarks are listed here once a release meets the standard. Follow the repository for releases, or propose a task through an issue.</p>
           </div>
           <div class="actions">
-            <a class="button" href="https://github.com/Hamsterradcc/xurbanai.com/issues/new?title=Benchmark%20entry%3A%20&labels=benchmarks">Propose a task</a>
+            <a class="button" href="https://github.com/Hamsterradcc/xurbanai.com/issues/new?template=benchmark-entry.yml">Propose a task</a>
           </div>
         </div>
       </div>
@@ -65,17 +69,22 @@
     <section id="card">
       <div class="eyebrow">Benchmark card</div>
       <h2>What a benchmark entry documents.</h2>
-      <p class="intro">In addition to the six common fields, every benchmark entry answers the following.</p>
+      <p class="intro">Every benchmark entry answers the following. The name in code is the key used in the registry data and in the proposal form.</p>
+      <!-- build:card benchmarks -->
       <dl class="fields">
-        <div><dt>Research question</dt><dd>The urban capability the task measures, and why that capability matters for a decision.</dd></div>
-        <div><dt>Task definition</dt><dd>Inputs, expected outputs, and the exact instructions or prompts given to a system under test.</dd></div>
-        <div><dt>Data</dt><dd>Source, geography, time span, licence, splits, and how test data is protected from leakage.</dd></div>
-        <div><dt>Metrics &amp; criteria</dt><dd>Scoring rules, what counts as success, and how uncertainty or disagreement is reported.</dd></div>
-        <div><dt>Baselines</dt><dd>Reference systems, including simple and human baselines where they exist, with their scores.</dd></div>
-        <div><dt>Submission rules</dt><dd>How results are submitted, what must be disclosed, and how evaluation code is run.</dd></div>
-        <div><dt>Generalization protocol</dt><dd>How performance is tested across cities, periods, or populations beyond the development data.</dd></div>
-        <div><dt>Versioning &amp; errata</dt><dd>Version history, corrections to data or scoring, and how earlier results are handled.</dd></div>
+        <div><dt>Research question <code class="key">urban_question</code></dt><dd>The urban capability the task measures, and why that capability matters for a decision.</dd></div>
+        <div><dt>Task definition <code class="key">task_definition</code></dt><dd>Inputs, expected outputs, and the exact instructions or prompts given to a system under test.</dd></div>
+        <div><dt>Data <code class="key">data_provenance</code></dt><dd>Source, geography, time span, licence, splits, and how test data is protected from leakage.</dd></div>
+        <div><dt>Metrics &amp; criteria <code class="key">metrics</code></dt><dd>Scoring rules, what counts as success, and how uncertainty or disagreement is reported.</dd></div>
+        <div><dt>Baselines <code class="key">baselines</code></dt><dd>Reference systems, including simple and human baselines where they exist, with their scores.</dd></div>
+        <div><dt>Task validation <code class="key">evaluation</code></dt><dd>How the task itself was checked: annotation agreement, leakage tests, and whether scores track the capability it claims to measure.</dd></div>
+        <div><dt>Known limitations <code class="key">failure_modes</code></dt><dd>Ways the benchmark can be gamed or misread, and capabilities it does not measure.</dd></div>
+        <div><dt>Generalization protocol <code class="key">geographic_validity</code></dt><dd>How performance is tested across cities, periods, or populations beyond the development data.</dd></div>
+        <div><dt>Submission rules <code class="key">submission_rules</code></dt><dd>How results are submitted, what must be disclosed, and how evaluation code is run.</dd></div>
+        <div><dt>Versioning &amp; errata <code class="key">versioning_errata</code></dt><dd>Version history, corrections to data or scoring, and how earlier results are handled.</dd></div>
+        <div><dt>Artifacts &amp; citation <code class="key">version</code> <code class="key">license</code> <code class="key">links</code> <code class="key">citation</code></dt><dd>Task files, evaluation code, version, licence, and citation.</dd></div>
       </dl>
+      <!-- /build:card benchmarks -->
       <div class="actions"><a class="button" href="standards.html#benchmarks">Benchmark standard in full</a></div>
     </section>
 
@@ -90,12 +99,16 @@
   </main>
 
   <footer>
-    <span>© 2026 XUrbanAI · A project by <a href="https://yuxuancai.com">Yuxuan Cai</a></span>
-    <div class="links">
-      <a href="https://urbanscience.ai">Urban Science AI Lab</a>
-      <a href="https://urbanprobe.com">UrbanProbe</a>
-      <a href="https://citycomputingcollective.com">City Computing Collective</a>
-      <a href="https://github.com/Hamsterradcc/xurbanai.com">GitHub</a>
+    <p class="network-title" id="network-title">Open urban research network</p>
+    <ul class="network" aria-labelledby="network-title">
+        <li><a href="https://urbanscience.ai"><strong>Urban Science AI Lab</strong><span>Research agenda</span></a></li>
+        <li><a href="https://urbanprobe.com"><strong>UrbanProbe</strong><span>Data, indicators &amp; methods</span></a></li>
+        <li><div class="here"><strong>XUrbanAI</strong><span>Models, agents &amp; benchmarks</span><small>This site</small></div></li>
+        <li><a href="https://citycomputingcollective.com"><strong>City Computing Collective</strong><span>Community &amp; collaboration</span></a></li>
+    </ul>
+    <div class="footer-base">
+      <span>&copy; 2026 XUrbanAI &middot; A project by <a href="https://yuxuancai.com">Yuxuan Cai</a></span>
+      <div class="links"><a href="standards.html">Entry standard</a><a href="https://github.com/Hamsterradcc/xurbanai.com">Repository</a></div>
     </div>
   </footer>
   <script src="assets/site.js"></script>
