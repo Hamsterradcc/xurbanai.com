@@ -18,6 +18,7 @@
   <meta property="og:image:alt" content="XUrbanAI: Build. Test. Question. Registries of urban AI models, agents, and benchmarks.">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071b1d'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='900' font-size='38' fill='%2367e8cf'%3EX%3C/text%3E%3C/svg%3E">
+  <link rel="alternate" type="application/rss+xml" title="XUrbanAI releases" href="feeds/releases.xml">
   <link rel="stylesheet" href="assets/site.css">
   <script type="application/ld+json">
 {
@@ -40,6 +41,7 @@
   <header>
     <div class="nav">
       <a class="brand" href="index.html" aria-current="page"><span>X</span>UrbanAI</a>
+      <button class="nav-search" type="button" data-palette hidden aria-label="Search"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg><span>Search</span><kbd>Ctrl K</kbd></button>
       <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
       <nav id="site-nav" aria-label="Primary">
         <a href="models.html">Models</a>
@@ -98,6 +100,11 @@
           <span class="count" data-count="benchmarks">Open registry</span>
         </a>
       </div>
+    </section>
+
+    <section id="latest" data-latest hidden>
+      <div class="section-head"><div><div class="eyebrow">Latest releases</div><h2>New and updated.</h2></div><a class="more-link" href="feeds/releases.xml">Subscribe (RSS)</a></div>
+      <div class="registry" data-slot="list"></div>
     </section>
 
     <section id="standard">
@@ -165,5 +172,6 @@
     </div>
   </footer>
   <script src="assets/site.js"></script>
+  <script src="assets/palette.js"></script>
 </body>
 </html>

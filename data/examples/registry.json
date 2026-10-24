@@ -9,12 +9,25 @@
       "status": "released",
       "version": "1.0.0",
       "released": "2026-01-15",
-      "authors": ["Author One", "Author Two"],
-      "tags": ["example", "street-level imagery", "perception"],
+      "authors": [
+        "Author One",
+        "Author Two"
+      ],
+      "tags": [
+        "example",
+        "street-level imagery",
+        "perception"
+      ],
       "license": "MIT (code), CC BY 4.0 (weights)",
       "links": [
-        { "label": "Code", "href": "https://github.com/Hamsterradcc/xurbanai.com" },
-        { "label": "Entry standard", "href": "standards.html#models" }
+        {
+          "label": "Code",
+          "href": "https://github.com/Hamsterradcc/xurbanai.com"
+        },
+        {
+          "label": "Entry standard",
+          "href": "standards.html#models"
+        }
       ],
       "citation": "Author One and Author Two (2026). Example model entry, version 1.0.0. XUrbanAI. https://xurbanai.com/entry.html?registry=models&id=example-model",
       "card": {
@@ -26,7 +39,98 @@
         "failure_modes": "Describe observed errors, gaps between subgroups or neighbourhoods, and the conditions under which outputs should not be used.",
         "geographic_validity": "Name the cities used for training and testing, and state whether any claim of transfer to other places is supported by evidence.",
         "usage_constraints": "Name the intended users, prohibited uses, and where human review is required before outputs inform a decision."
-      }
+      },
+      "task": "Perception rating",
+      "modalities": [
+        "street-level imagery"
+      ],
+      "themes": [
+        "sensing",
+        "urban-ai"
+      ],
+      "cities": [
+        "Example City A",
+        "Example City B"
+      ],
+      "usage": "from example_models import load\nmodel = load(\"example-model\", version=\"1.0.0\")\nscores = model.rate(images)  # one score per image",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-01-15",
+          "note": "First release."
+        }
+      ],
+      "related": [
+        {
+          "registry": "benchmarks",
+          "id": "example-benchmark",
+          "relation": "evaluated-on"
+        }
+      ]
+    },
+    {
+      "id": "example-model-multimodal",
+      "title": "Example multimodal model entry",
+      "summary": "A second placeholder model, used to show filters and leaderboard links across entries.",
+      "status": "released",
+      "version": "0.2.0",
+      "released": "2026-03-20",
+      "authors": [
+        "Author Two"
+      ],
+      "tags": [
+        "example",
+        "street-level imagery",
+        "perception"
+      ],
+      "license": "Apache-2.0",
+      "links": [
+        {
+          "label": "Code",
+          "href": "https://github.com/Hamsterradcc/xurbanai.com"
+        },
+        {
+          "label": "Entry standard",
+          "href": "standards.html#models"
+        }
+      ],
+      "citation": "Author Two (2026). Example multimodal model entry, version 0.2.0. XUrbanAI.",
+      "card": {
+        "urban_question": "State the city problem in one or two sentences, and name the people who will use the output. A model without a stated user does not enter the registry.",
+        "intended_task": "Name the task precisely, for example a rating, a classification, or an embedding, and the decision it is meant to inform.",
+        "inputs_modalities": "List each input with its resolution and preprocessing, for example street-level images at 640 by 640 pixels, cropped and colour-normalised.",
+        "data_provenance": "Give every training source with its geography, period, licence, and sampling. Say what was excluded and why.",
+        "evaluation": "Report held-out results against at least one baseline, with uncertainty. Link the evaluation code so the numbers can be reproduced.\n\nResults are reported exactly as released; later re-runs get a new version.",
+        "failure_modes": "Describe observed errors, gaps between subgroups or neighbourhoods, and the conditions under which outputs should not be used.",
+        "geographic_validity": "Name the cities used for training and testing, and state whether any claim of transfer to other places is supported by evidence.",
+        "usage_constraints": "Name the intended users, prohibited uses, and where human review is required before outputs inform a decision."
+      },
+      "task": "Land use classification",
+      "modalities": [
+        "imagery",
+        "maps"
+      ],
+      "themes": [
+        "built-environment",
+        "urban-ai"
+      ],
+      "cities": [
+        "Example City C"
+      ],
+      "changelog": [
+        {
+          "version": "0.2.0",
+          "date": "2026-03-20",
+          "note": "First public release."
+        }
+      ],
+      "related": [
+        {
+          "registry": "benchmarks",
+          "id": "example-benchmark",
+          "relation": "evaluated-on"
+        }
+      ]
     }
   ],
   "agents": [
@@ -38,10 +142,20 @@
       "version": "0.3.0",
       "released": "2026-02-01",
       "updated": "2026-03-10",
-      "authors": ["Author One"],
-      "tags": ["example", "evidence synthesis"],
+      "authors": [
+        "Author One"
+      ],
+      "tags": [
+        "example",
+        "evidence synthesis"
+      ],
       "license": "Apache-2.0",
-      "links": [{ "label": "Code", "href": "https://github.com/Hamsterradcc/xurbanai.com" }],
+      "links": [
+        {
+          "label": "Code",
+          "href": "https://github.com/Hamsterradcc/xurbanai.com"
+        }
+      ],
       "citation": "Author One (2026). Example agent entry, version 0.3.0. XUrbanAI.",
       "card": {
         "urban_question": "State the planning or research task the agent supports, and who runs it.",
@@ -53,7 +167,34 @@
         "traceability": "Describe the logs, intermediate outputs, and citations the agent produces so that a result can be audited.",
         "geographic_validity": "Name the places where the workflow was tested and whether results hold elsewhere.",
         "usage_constraints": "Name settings where the agent must not be used, and any cost or rate limits."
-      }
+      },
+      "task": "Evidence synthesis",
+      "themes": [
+        "governance",
+        "urban-ai"
+      ],
+      "cities": [
+        "Example City A"
+      ],
+      "related": [
+        {
+          "registry": "models",
+          "id": "example-model",
+          "relation": "uses"
+        }
+      ],
+      "changelog": [
+        {
+          "version": "0.2.0",
+          "date": "2026-02-01",
+          "note": "First release."
+        },
+        {
+          "version": "0.3.0",
+          "date": "2026-03-10",
+          "note": "Adds source citations to every intermediate step."
+        }
+      ]
     }
   ],
   "benchmarks": [
@@ -64,12 +205,25 @@
       "status": "released",
       "version": "1.1.0",
       "released": "2026-03-01",
-      "authors": ["Author One", "Author Two", "Author Three"],
-      "tags": ["example", "survey replication"],
+      "authors": [
+        "Author One",
+        "Author Two",
+        "Author Three"
+      ],
+      "tags": [
+        "example",
+        "survey replication"
+      ],
       "license": "CC BY 4.0 (task files), MIT (evaluation code)",
       "links": [
-        { "label": "Task files", "href": "https://github.com/Hamsterradcc/xurbanai.com" },
-        { "label": "Superseded version", "href": "entry.html?registry=benchmarks&id=example-benchmark-v1&src=example" }
+        {
+          "label": "Task files",
+          "href": "https://github.com/Hamsterradcc/xurbanai.com"
+        },
+        {
+          "label": "Superseded version",
+          "href": "entry.html?registry=benchmarks&id=example-benchmark-v1&src=example"
+        }
       ],
       "citation": "Author One, Author Two and Author Three (2026). Example benchmark entry, version 1.1.0. XUrbanAI.",
       "card": {
@@ -83,6 +237,121 @@
         "geographic_validity": "Describe how performance is tested beyond the development data: other cities, periods, or populations.",
         "submission_rules": "Explain how results are submitted, what must be disclosed, and how the evaluation code is run.",
         "versioning_errata": "Record each version and correction. Version 1.1.0 corrected two mislabelled items in the test split; earlier results are reported against 1.0.0."
+      },
+      "task": "Survey replication",
+      "modalities": [
+        "text",
+        "tabular"
+      ],
+      "themes": [
+        "housing",
+        "urban-ai"
+      ],
+      "cities": [
+        "Example City A",
+        "Example City B",
+        "Example City C"
+      ],
+      "doi": "10.5281/zenodo.0000000",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-01-20",
+          "note": "First release."
+        },
+        {
+          "version": "1.1.0",
+          "date": "2026-03-01",
+          "note": "Corrected two mislabelled items in the test split."
+        }
+      ],
+      "leaderboard": {
+        "metrics": [
+          {
+            "key": "accuracy",
+            "label": "Accuracy",
+            "higher_is_better": true,
+            "unit": "%",
+            "decimals": 1
+          },
+          {
+            "key": "rmse",
+            "label": "Structure RMSE",
+            "higher_is_better": false,
+            "decimals": 3
+          },
+          {
+            "key": "transfer",
+            "label": "Cross-city gap",
+            "higher_is_better": false,
+            "unit": "pp",
+            "decimals": 1
+          }
+        ],
+        "results": [
+          {
+            "system": "Example model entry",
+            "system_ref": {
+              "registry": "models",
+              "id": "example-model"
+            },
+            "scores": {
+              "accuracy": 71.4,
+              "rmse": 0.412,
+              "transfer": 6.2
+            },
+            "date": "2026-03-02",
+            "verified": true
+          },
+          {
+            "system": "Example multimodal model entry",
+            "system_ref": {
+              "registry": "models",
+              "id": "example-model-multimodal"
+            },
+            "scores": {
+              "accuracy": 68.9,
+              "rmse": 0.388,
+              "transfer": 4.1
+            },
+            "date": "2026-03-21",
+            "verified": true
+          },
+          {
+            "system": "Majority-class baseline",
+            "scores": {
+              "accuracy": 52.0,
+              "rmse": 0.701,
+              "transfer": 0.0
+            },
+            "date": "2026-03-01",
+            "baseline": true,
+            "verified": true
+          },
+          {
+            "system": "Human annotators",
+            "scores": {
+              "accuracy": 84.3,
+              "rmse": null,
+              "transfer": 2.5
+            },
+            "date": "2026-03-01",
+            "baseline": true,
+            "verified": true,
+            "notes": "Three annotators per item."
+          },
+          {
+            "system": "External submission (unverified)",
+            "scores": {
+              "accuracy": 74.0,
+              "rmse": 0.455,
+              "transfer": 9.8
+            },
+            "date": "2026-04-02",
+            "link": "https://github.com/Hamsterradcc/xurbanai.com",
+            "verified": false
+          }
+        ]
       }
     },
     {
@@ -93,7 +362,12 @@
       "version": "1.0.0",
       "released": "2026-01-20",
       "replaced_by": "example-benchmark",
-      "tags": ["example"]
+      "tags": [
+        "example"
+      ],
+      "themes": [
+        "housing"
+      ]
     }
   ]
 }
