@@ -1,47 +1,79 @@
 # xurbanai.com
 
-Experimental platform for urban AI models, agents, benchmarks, and prototypes. Static site served by GitHub Pages at <https://xurbanai.com>.
+Experimental platform for urban AI models, agents, benchmarks, and prototypes. Static site served by GitHub Pages at <https://xurbanai.com>. No build step is needed to serve it.
 
 ## Site map
 
 | Page | Role |
 | --- | --- |
-| `index.html` | Entry point: the three registries, the common entry standard, principles, release process |
-| `models.html` | Registry 01 — released models, plus the model card fields |
-| `agents.html` | Registry 02 — released agents, plus the agent card fields |
-| `benchmarks.html` | Registry 03 — released benchmarks, plus the benchmark card fields |
-| `standards.html` | The full entry standard: common fields, per-registry fields, release checklist, status and versioning, out of scope |
-| `404.html` | Not-found page (served by GitHub Pages) |
+| `index.html` | Entry point: the three registries, the common fields, principles, release process |
+| `models.html` | Registry 01: released models and the model card fields |
+| `agents.html` | Registry 02: released agents and the agent card fields |
+| `benchmarks.html` | Registry 03: released benchmarks and the benchmark card fields |
+| `entry.html` | One entry, rendered from the data: `entry.html?registry=<key>&id=<id>` |
+| `standards.html` | The full entry standard: fields, release checklist, status and versioning, out of scope |
+| `404.html` | Not-found page |
 
-Shared assets: `assets/site.css` (one stylesheet for every page) and `assets/site.js` (mobile navigation and registry rendering). No build step and no external dependencies.
+Shared assets: `assets/site.css`, `assets/site.js`, and `assets/og.png` (social preview card).
 
-## Registry data
+## How the standard is kept in one place
 
-`data/registry.json` is the single source of truth for entries. Each registry page renders its list from this file; the index shows entry counts. With no entries the pages show their built-in empty state, so the site works without the file or without JavaScript.
+`data/schema.json` is the single source of truth. Everything else follows from it.
 
-```json
-{
-  "models": [],
-  "agents": [],
-  "benchmarks": [
-    {
-      "id": "example-task",
-      "title": "Example task",
-      "summary": "One sentence on what the task measures.",
-      "status": "released",
-      "version": "1.0.0",
-      "released": "2026-01-01",
-      "url": "entries/benchmarks/example-task.html",
-      "tags": ["city", "modality"]
-    }
-  ]
-}
+```
+data/schema.json ──► scripts/build.py ──► field lists in index, standards and registry pages
+       │                              └─► .github/ISSUE_TEMPLATE/<registry>-entry.yml
+       └──────────► scripts/validate.py ──► checks data/registry.json and data/examples/
+                    assets/site.js ───────► reads both files to render lists and entry pages
 ```
 
-- `status` is one of `draft`, `released`, `deprecated`. Drafts are kept in the file but not shown.
-- `url` points at the entry card. Reserve `entries/<registry>/<id>.html` for cards hosted here; external cards may link out.
-- Fields the card must contain are listed on `standards.html`.
+- **Change a field**: edit `data/schema.json`, then run `python scripts/build.py`. It rewrites the content between `<!-- build:... -->` markers in the pages and regenerates the issue forms. Do not edit those blocks by hand.
+- **Add an entry**: add an object to the right array in `data/registry.json`, then run `python scripts/validate.py`. Entries with `status: "draft"` are kept but not shown.
+- **CI**: `.github/workflows/validate.yml` runs both scripts with `--check` on every push and pull request.
+
+### Entry fields
+
+| Field | Required when | Notes |
+| --- | --- | --- |
+| `id`, `title`, `summary`, `status` | always | `id` is a lowercase slug used in the URL; `status` is `draft`, `released` or `deprecated` |
+| `version`, `released` | released, deprecated | semantic version; ISO date |
+| `authors`, `license`, `links`, `citation`, `card` | released | `links` is a list of `{label, href}`; the first link is the primary button |
+| `card` fields | released | every field defined for the registry; placeholders such as "TBD" or "to follow" fail validation |
+| `updated`, `tags`, `url`, `replaced_by`, `themes`, `cities`, `doi`, `usage`, `related`, `changelog` | optional | `url` points to an external card instead of `entry.html`; `replaced_by` names the id that supersedes a deprecated entry |
+
+### Preview and examples
+
+`data/examples/registry.json` holds one complete example per registry. It is never listed on the site, but it renders on the entry page for previewing the layout:
+
+- `entry.html?registry=models&id=example-model&src=example`
+- `entry.html?registry=benchmarks&id=example-benchmark&src=example`
+
+Local preview needs a static server, because the pages fetch JSON:
+
+```
+python -m http.server 8000
+```
+
+## Platform features
+
+Shared by XUrbanAI and UrbanProbe (`assets/site.js`, `assets/palette.js`):
+
+- **Faceted browsing** on every registry page: filters declared per registry in `x-registries[].facets` of the schema, with counts, search, sort, and the state kept in the URL.
+- **Entry pages** in sections with an in-page navigation: the card, then whatever the entry provides:
+  - `leaderboard` (benchmarks): sortable by any metric, baselines shown but not ranked, a verified-only toggle; systems that appear on a leaderboard show their results on their own page.
+  - `preview` (a CSV sample of at most 1 MB): first rows and per-column statistics; `variables`: a data dictionary; `distributions`: files to download.
+  - `usage`: a copyable snippet; `related`: links to other entries, shown in both directions using the labels in `x-relations`; `changelog`: a version timeline; `citation` plus a generated BibTeX entry; `doi`.
+  - schema.org metadata (`Dataset` or `SoftwareSourceCode`), so dataset search engines can index entries.
+- **Themes shared across the network**: `themes` uses the research themes of the City Computing Collective (`x-themes`); theme tags link to its theme hubs, which list these entries.
+- **Command palette** (`Ctrl K` / `⌘K`): entries, registries, standard fields, themes, and proposal forms.
+- **Releases feed**: `feeds/releases.xml`, generated by `scripts/build.py` from released entries.
+
+The validator also checks that related entries and leaderboard systems exist, that scores use declared metrics, that changelogs list the current version, and that local previews exist.
+
+## Proposals and corrections
+
+Issue forms are generated from the schema, one per registry, plus a correction form. Blank issues are disabled; general questions go to the City Computing Collective discussions.
 
 ## Editing
 
-Pages share the same header, footer, and `<head>` block. When changing them, change every page. Navigation marks the current page with `aria-current="page"`.
+Pages share the same header, footer, and `<head>` block. When changing them, change every page. The footer lists the four sites of the network in the same order on every site: Urban Science AI Lab, UrbanProbe, XUrbanAI, City Computing Collective.
