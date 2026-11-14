@@ -222,7 +222,7 @@
         },
         {
           "label": "Superseded version",
-          "href": "entry.html?registry=benchmarks&id=example-benchmark-v1&src=example"
+          "href": "entry.html?registry=benchmarks&id=example-benchmark-v1"
         }
       ],
       "citation": "Author One, Author Two and Author Three (2026). Example benchmark entry, version 1.1.0. XUrbanAI.",
