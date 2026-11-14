@@ -301,7 +301,7 @@
               },
               "href": {
                 "type": "string",
-                "pattern": "^(https?://|[A-Za-z0-9._/-])"
+                "pattern": "^(https?://\\S+|[A-Za-z0-9._/#?&=%-]+)$"
               }
             }
           }
